@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgqnw4wwb0cs0"]
+
+[ext_resource type="Texture2D" uid="uid://ds5apimxb2jvs" path="res://assets/Sprites/Objects&Tiles/Weapon1.png" id="1_gp53h"]
+[ext_resource type="Script" uid="uid://bv4crqd3bsxb8" path="res://scripts/gun.gd" id="1_h5px7"]
+[ext_resource type="PackedScene" uid="uid://xol0l1jk0mas" path="res://scenes/bullet.tscn" id="2_h5px7"]
+
+[node name="gun" type="Node2D"]
+script = ExtResource("1_h5px7")
+bullet_scene = ExtResource("2_h5px7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(13, 2.60938)
+scale = Vector2(1, 1.0558)
+texture = ExtResource("1_gp53h")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(25, -1)
+scale = Vector2(1, 0.96875)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.1

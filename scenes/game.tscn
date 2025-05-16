@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=4 uid="uid://c4eusf4maopji"]
+
+[ext_resource type="Texture2D" uid="uid://b8jkdhjv2p2jr" path="res://assets/Sprites/Objects&Tiles/TileMapGrass.png" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://d2ew7xfobvas" path="res://scenes/player.tscn" id="2_lnu2h"]
+[ext_resource type="Script" uid="uid://t2n04pbcx6q1" path="res://scripts/zombie_spawner.gd" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://diunayax0b0dj" path="res://scenes/zombie.tscn" id="4_lbhrr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
+texture = ExtResource("1_yqjtg")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+5:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_iywne"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_lbhrr")
+
+[node name="Game" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAABAP//AAABAAEAAAACAP//AAABAAEAAAADAP//AAABAAEAAAAEAP//AAAHAAIAAAAEAAAAAAAHAAIAAAAFAAAAAAABAAEAAAAGAAAAAAABAAEAAAAGAAEAAAABAAEAAAAGAAIAAAAHAAIAAAAFAAIAAAABAAEAAAAEAAIAAAAHAAIAAAAEAAEAAAABAAEAAAADAAEAAAABAAEAAAACAAEAAAABAAEAAAABAAEAAAABAAEAAAABAAAAAAABAAEAAAACAAAAAAABAAEAAAADAAAAAAABAAEAAAAAAAAAAAABAAEAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAABAAIAAAABAAEAAAACAAIAAAABAAEAAAADAAIAAAABAAEAAAAFAAMAAAABAAEAAAAGAAMAAAABAAEAAAAFAAEAAAABAAEAAAAGAP//AAABAAEAAAAFAP//AAABAAEAAAAHAP//AAABAAEAAAAIAP//AAABAAEAAAAJAP//AAABAAEAAAAKAP//AAABAAEAAAALAP//AAABAAEAAAAJAP7/AAABAAEAAAAIAP7/AAABAAEAAAAHAP7/AAAFAAIAAAAGAP3/AAACAAIAAAAFAP3/AAADAAEAAAAEAP7/AAABAAEAAAADAP7/AAABAAEAAAACAP7/AAABAAEAAAAGAP7/AAAEAAIAAAAFAP7/AAADAAIAAAAEAP3/AAABAAEAAAADAP3/AAABAAEAAAABAP7/AAABAAEAAAACAP3/AAABAAEAAAADAPz/AAABAAEAAAAEAPz/AAABAAEAAAAFAPz/AAADAAAAAAAGAPz/AAAEAAAAAAAHAP3/AAAFAAEAAAAIAP3/AAABAAEAAAAJAAAAAAABAAEAAAAJAAEAAAABAAEAAAAIAAEAAAABAAEAAAAHAAEAAAABAAEAAAAIAAAAAAABAAEAAAAKAAAAAAACAAIAAAALAAAAAAABAAEAAAAKAAEAAAABAAEAAAAHAPz/AAAFAAAAAAAOAPz/AAACAAIAAAAMAPv/AAACAAIAAAALAPv/AAACAAIAAAAKAPv/AAACAAIAAAA=")
+tile_set = SubResource("TileSet_iywne")
+
+[node name="Player" parent="." instance=ExtResource("2_lnu2h")]
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+position = Vector2(0, -10)
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="ZombieSpawner" type="Node2D" parent="."]
+script = ExtResource("3_lnu2h")
+zombie_scene = ExtResource("4_lbhrr")
+
+[node name="SpawnTimer" type="Timer" parent="ZombieSpawner"]
+
+[connection signal="timeout" from="ZombieSpawner/SpawnTimer" to="ZombieSpawner" method="_on_spawn_timer_timeout"]

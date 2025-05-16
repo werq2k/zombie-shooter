@@ -1,0 +1,10 @@
+# Godot 4+ specific ignores
+.godot/
+.import/
+.export/
+export.cfg
+export_presets.cfg
+*.tmp
+
+# Android build folder (if you use Android exports)
+android/
