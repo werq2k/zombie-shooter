@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="zombie shooter"
-run/main_scene="uid://c4eusf4maopji"
+run/main_scene="uid://cp54rvwgb0m6g"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
